@@ -5,7 +5,7 @@ import { Providers } from "./providers"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Modern Banking Portal",
+  title: "FinServe",
   description: "A user-friendly banking service portal",
 }
 

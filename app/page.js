@@ -7,6 +7,7 @@ import { User, Lock, UserPlus, FileText, Upload, Camera } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { toast } from "react-toastify" // Import toast for notifications
 
 export default function AuthPage() {
   const [authMethod, setAuthMethod] = useState("login")
@@ -33,6 +34,14 @@ export default function AuthPage() {
     // Simulate authentication process
     await new Promise((resolve) => setTimeout(resolve, 2000))
     setIsLoading(false)
+    
+    // Show toast message based on authentication method
+    if (authMethod === "login") {
+      toast.success("Login successful!") // Toast for login success
+    } else if (authMethod === "register") {
+      toast.success("Registration successful!") // Toast for registration success
+    }
+
     // Redirect to dashboard after successful authentication
     router.push("/dashboard")
   }
@@ -55,18 +64,25 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 relative">
+      <motion.div 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        exit={{ opacity: 0 }} 
+        transition={{ duration: 0.5 }} 
+        className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 z-0"
+      />
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="z-10">
         <Card className="w-full max-w-md">
           <CardHeader>
-            <CardTitle className="text-2xl text-center">Welcome to BankPortal</CardTitle>
+            <CardTitle className="text-2xl text-center">Welcome to FinServe</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex justify-center mb-6">
               <Button
                 variant={authMethod === "login" ? "default" : "outline"}
                 onClick={() => setAuthMethod("login")}
-                className="rounded-r-none"
+                className="rounded-r-none "
               >
                 Login
               </Button>
@@ -108,12 +124,12 @@ export default function AuthPage() {
                       </Button>
                     </div>
                   ) : (
-                    <Button className="w-full" onClick={startFacialRecognition}>
+                    <Button className="w-full bg-black" onClick={startFacialRecognition}>
                       <Camera className="w-5 h-5 mr-2" />
                       Start Facial Recognition
                     </Button>
                   )}
-                  <Button className="w-full" onClick={handleSubmit} disabled={isLoading || !isCameraActive}>
+                  <Button className="w-full bg-black" onClick={handleSubmit} disabled={isLoading || !isCameraActive}>
                     {isLoading ? "Processing..." : "Login with Face"}
                   </Button>
                 </motion.div>
@@ -193,7 +209,7 @@ export default function AuthPage() {
                       </div>
                     </motion.div>
                   )}
-                  <Button type="submit" className="w-full" disabled={isLoading}>
+                  <Button type="submit" className="w-full bg-black" disabled={isLoading}>
                     {isLoading ? "Processing..." : authMethod === "register" ? "Register" : "Login"}
                   </Button>
                 </motion.form>
@@ -205,4 +221,3 @@ export default function AuthPage() {
     </div>
   )
 }
-

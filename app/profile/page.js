@@ -31,7 +31,7 @@ export default function BankingProfile() {
             </div>
             <div className="ml-6">
               <h2 className="text-2xl font-semibold text-gray-900">Rahul Sharma</h2>
-              <p className="text-gray-600">Banking Customer</p>
+              
             </div>
           </div>
 
