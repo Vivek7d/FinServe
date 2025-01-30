@@ -30,7 +30,7 @@ export default function BankingProfile() {
               </button>
             </div>
             <div className="ml-6">
-              <h2 className="text-2xl font-semibold text-gray-900">Rahul Sharma</h2>
+              <h2 className="text-2xl font-semibold text-gray-900">John Doe</h2>
               
             </div>
           </div>
