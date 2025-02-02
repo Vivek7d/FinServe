@@ -71,9 +71,9 @@ export default function ServiceTickets() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Service Tickets</h1>
-          <div className="flex gap-2">
+          <div className="flex gap-2 mt-4 md:mt-0">
             <Button 
               variant={filterStatus === 'all' ? "default" : "outline"}
               onClick={() => setFilterStatus('all')}
@@ -146,10 +146,10 @@ export default function ServiceTickets() {
                     <span>{ticket.createdOn || "N/A"}</span>
                   </div>
                 </div>
-                <div className="flex space-x-4 pt-2 border-t">
+                <div className="flex flex-col md:flex-row space-x-0 md:space-x-4 pt-2 border-t">
                   <Button 
                     variant="default" 
-                    className="flex-1"
+                    className="flex-1 mb-2 md:mb-0"
                     onClick={() => setExpandedTicket(ticket.id)}
                   >
                     View Details

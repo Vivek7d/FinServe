@@ -4,9 +4,7 @@ import { Calendar, Clock, Search, Star, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Poppins } from 'next/font/google';
 import { Textarea } from "@/components/ui/textarea";
@@ -61,20 +59,17 @@ const financialAdvisors = [
     reviews: 50,
     bio: "Provides insurance consultation and risk assessment services.",
   },
-  // Add more advisors if needed
 ];
 
 const timeSlots = [
   "10:00 AM - 11:00 AM",
   "11:00 AM - 12:00 PM",
   "01:00 PM - 02:00 PM",
-  // Add more time slots as needed
 ];
 
 const feedbackSessions = [
   { id: 1, advisor: "Mr. John Doe", date: "May 15, 2023" },
   { id: 2, advisor: "Ms. Sarah Lee", date: "May 10, 2023" },
-  // Add more sessions if needed
 ];
 
 const poppins = Poppins({
@@ -94,12 +89,10 @@ export default function page() {
     setSelectedAdvisor(event.target.value);
   };
 
-  // Filter advisors based on the search query
   const filteredAdvisors = financialAdvisors.filter((advisor) =>
     advisor.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Update available time slots based on selected advisor
   useEffect(() => {
     setAvailableTimeSlots(timeSlots);
   }, [selectedAdvisor]);
@@ -146,7 +139,7 @@ export default function page() {
                 <CardTitle>Find a Financial Advisor</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="mb-4 flex flex-wrap gap-4">
+                <div className="mb-4 flex flex-col sm:flex-row gap-4">
                   <Input
                     type="text"
                     placeholder="Search advisors..."
@@ -154,13 +147,13 @@ export default function page() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="flex-grow"
                   />
-                  <select className="w-full sm:w-auto">
+                  <select className="flex-grow sm:w-auto border rounded-md py-2 px-4 bg-white">
                     <option value="">All Specialties</option>
                     <option value="investment">Investment Planning</option>
                     <option value="tax">Tax Consultation</option>
                     <option value="retirement">Retirement Planning</option>
                   </select>
-                  <Button>
+                  <Button className="w-full sm:w-auto">
                     <Search className="mr-2 h-4 w-4" /> Search
                   </Button>
                 </div>
@@ -214,7 +207,7 @@ export default function page() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="flex flex-col md:flex-row gap-4 mb-6">
+                  <div className="flex flex-col sm:flex-row gap-4 mb-6">
                     <select
                       className="flex-grow border rounded-md py-2 px-4 bg-white"
                       value={selectedAdvisor}
