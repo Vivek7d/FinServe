@@ -13,7 +13,7 @@ import { Navbar } from "@/components/navbar";
 const financialAdvisors = [
   {
     id: 1,
-    name: "Mr. John Doe",
+    name: "Mr. John Stone",
     specialty: "Investment Planning",
     rating: 4.8,
     reviews: 120,
